@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Portal</title>
-   
+<link rel="stylesheet" href="./style.css">
     <!-- daisyui tailwind -->
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -18,11 +18,22 @@
         class="bg-slate-500 text-white p-3 container mx-auto rounded-md my-4 flex justify-between">
     </header>
     <main class="container mx-auto">
+        
         <!-- seach catagory data -->
-        <section class="flex justify-center mb-3">
-            <input id="search_text" type="text" placeholder="Search Catagory" class="border-2 rounded rounded-r-none border-r-0 pl-3" />
+        <section class="flex justify-center mb-3 ">
+            <input id="search_text" type="text" placeholder="Search Catagory"
+                class="border-2 rounded rounded-r-none border-r-0 pl-3" />
             <button onclick="searchHandel()" class="btn rounded-l-none bg-[#3F00E7] text-white">Accent</button>
 
+        </section>
+        <!-- loading sppiner -->
+        <section id="sppiner" class="flex justify-center  hidden">
+            <div>
+                <span class="loading loading-ball loading-xs"></span>
+                <span class="loading loading-ball loading-sm"></span>
+                <span class="loading loading-ball loading-md"></span>
+                <span class="loading loading-ball loading-lg"></span>
+            </div>
         </section>
         <!-- load card container -->
         <section id="card_container" class="grid grid-cols-3 gap-10">
