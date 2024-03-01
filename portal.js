@@ -25,6 +25,8 @@ const loadCatagoryData = async (id) => {
     const data = await res.json()
     displayShowCard(data.data)
 }
+// initioal load news
+loadCatagoryData("01")
 // display catagory card
 const displayShowCard = (cards) => {
     // console.log(cards)
