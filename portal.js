@@ -1,9 +1,9 @@
 const loadCatagory = async () => {
-    
+
     const res = await fetch("https://openapi.programming-hero.com/api/news/categories")
     const data = await res.json()
     // console.log(data.data.news_category)
-  
+
     displayCatagory(data.data.news_category)
 }
 
@@ -12,7 +12,7 @@ const displayCatagory = (catagoys) => {
 
     // console.log(catagoys)
     const catagoyContainer = document.getElementById("catagory_container")
-    
+
     catagoys.forEach(catagoy => {
         const catoryBtn = document.createElement("div")
         catoryBtn.innerHTML = `
@@ -25,12 +25,11 @@ loadCatagory()
 
 // load catagory data
 const loadCatagoryData = async (id) => {
-    
-
     const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     const data = await res.json()
-  
+
     displayShowCard(data.data)
+
 }
 // initioal load news
 loadCatagoryData("01")
@@ -38,21 +37,25 @@ loadCatagoryData("01")
 const displayShowCard = (cards) => {
 
 
-    
+
     // console.log(cards)
     const card_container = document.getElementById("card_container")
     card_container.innerHTML = ""
     cards.forEach(card => {
+        const { title, details, _id } = card
+        const sliceTitel = title.slice(0, 30)
+        const sliceDetails = details.slice(0, 30)
+        // console.log(card._id)
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="card card-side bg-base-100 shadow-xl">
-                <figure><img src="${card.thumbnail_url
+                <figure><img  src="${card.thumbnail_url
             }" alt="Movie"/></figure>
                 <div class="card-body">
-                  <h2 class="card-title">New movie is released!</h2>
-                  <p>Click the button to watch on Jetflix app.</p>
+                  <h2 class="card-title">${sliceTitel}</h2>
+                  <p>${sliceDetails}</p>
                   <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Watch</button>
+                    <button onclick="handelModal();loadDetailsData('${_id}')" class="btn btn-primary">Watch</button>
                   </div>
                 </div>
               </div>
@@ -82,4 +85,23 @@ const loadDisplay = (isLoading) => {
     else {
         sppiner.classList.add("hidden")
     }
+}
+
+// modal
+const handelModal = () => {
+    my_modal_5.showModal()
+}
+
+// load details data modal
+const loadDetailsData = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/news/${id}`)
+    const data = await res.json()
+    displayDetailsData(data.data[0])
+}
+// display details data
+const displayDetailsData = (card_info) => {
+    const { thumbnail_url,title,details} = card_info
+    document.getElementById("card_title").innerText=title
+    document.getElementById("card_description").innerText=details
+    console.log(card_info)
 }

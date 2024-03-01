@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Portal</title>
-<link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
     <!-- daisyui tailwind -->
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -18,7 +18,7 @@
         class="bg-slate-500 text-white p-3 container mx-auto rounded-md my-4 flex justify-between">
     </header>
     <main class="container mx-auto">
-        
+
         <!-- seach catagory data -->
         <section class="flex justify-center mb-3 ">
             <input id="search_text" type="text" placeholder="Search Catagory"
@@ -34,6 +34,23 @@
                 <span class="loading loading-ball loading-md"></span>
                 <span class="loading loading-ball loading-lg"></span>
             </div>
+        </section>
+        <!-- modal -->
+        <section>
+            <!-- Open the modal using ID.showModal() method -->
+            
+            <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                <div class="modal-box">
+                    <h3 id="card_title" class="font-bold text-lg">Hello!</h3>
+                    <p id="card_description" class="py-4">Press ESC key or click the button below to close</p>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </section>
         <!-- load card container -->
         <section id="card_container" class="grid grid-cols-3 gap-10">
