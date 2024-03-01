@@ -48,7 +48,16 @@ const displayShowCard = (cards) => {
               </div>
         `
         card_container.appendChild(div)
-        console.log(card)
+        // console.log(card)
     })
    
+}
+// search handel
+const searchHandel=()=>{
+    const searchText=document.getElementById("search_text").value
+    if(searchText){
+        loadCatagoryData(searchText)
+    }else{
+        alert("please enter a id")
+    }
 }
