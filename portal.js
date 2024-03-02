@@ -24,20 +24,27 @@ const displayCatagory = (catagoys) => {
 loadCatagory()
 
 // load catagory data
-const loadCatagoryData = async (id) => {
+const loadCatagoryData = async (id,isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     const data = await res.json()
 
-    displayShowCard(data.data)
+    displayShowCard(data.data,isShowAll)
 
 }
 // initioal load news
 loadCatagoryData("01")
 // display catagory card
-const displayShowCard = (cards) => {
+const displayShowCard = (cards,isShowAll) => {
 
-
-
+    if(cards.length>5 && !isShowAll){
+        document.getElementById("show_all_ontainer").classList.remove("hidden")
+    }else{
+        document.getElementById("show_all_ontainer").classList.add("hidden")
+    }
+    if(!isShowAll){
+     cards=cards.slice(0,5)
+    }
+    console.log("click",isShowAll)
     // console.log(cards)
     const card_container = document.getElementById("card_container")
     card_container.innerHTML = ""
@@ -66,12 +73,12 @@ const displayShowCard = (cards) => {
     loadDisplay(false)
 }
 // search handel
-const searchHandel = () => {
+const searchHandel = (isShowAll) => {
 
     const searchText = document.getElementById("search_text").value
     if (searchText) {
         loadDisplay(true)
-        loadCatagoryData(searchText)
+        loadCatagoryData(searchText,isShowAll)
     } else {
         alert("please enter a id")
     }
@@ -104,4 +111,10 @@ const displayDetailsData = (card_info) => {
     document.getElementById("card_title").innerText=title
     document.getElementById("card_description").innerText=details
     console.log(card_info)
+}
+// show all handel
+
+const showAllHandel=(isShowAll)=>{
+    // console.log("hello")
+    searchHandel(isShowAll)
 }
